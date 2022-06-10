@@ -5,22 +5,64 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Tic-Tac-Toe</title>
-    <link href="./styles.css" rel="stylesheet" />
-    <script defer type="module" src="./script.js"></script>
+    <link href="./styles/styles.css" rel="stylesheet" />
+    <script defer type="module" src="./scripts/script.js"></script>
   </head>
   <body>
-    <div class="tic-tac-toe-container" id="tic-tac-toe-container">
-      <button class="tic-tac-toe-btn"></button>
-      <button class="tic-tac-toe-btn"></button>
-      <button class="tic-tac-toe-btn"></button>
-      <button class="tic-tac-toe-btn"></button>
-      <button class="tic-tac-toe-btn"></button>
-      <button class="tic-tac-toe-btn"></button>
-      <button class="tic-tac-toe-btn"></button>
-      <button class="tic-tac-toe-btn"></button>
-      <button class="tic-tac-toe-btn"></button>
-    </div>
-    <!-- <dialog open>Gotchya 👌</dialog> -->
-    <button id="reset" class="btn reset-btn">Reset</button>
+    <main>
+      <div class="tic-tac-toe-container" id="tic-tac-toe-container">
+        <button class="tic-tac-toe-btn"></button>
+        <button class="tic-tac-toe-btn"></button>
+        <button class="tic-tac-toe-btn"></button>
+        <button class="tic-tac-toe-btn"></button>
+        <button class="tic-tac-toe-btn"></button>
+        <button class="tic-tac-toe-btn"></button>
+        <button class="tic-tac-toe-btn"></button>
+        <button class="tic-tac-toe-btn"></button>
+        <button class="tic-tac-toe-btn"></button>
+      </div>
+      <div class="reset-container">
+        <button id="reset" class="btn reset-btn">Reset</button>
+        <button id="open-settings" class="btn reset-btn">Settings</button>
+      </div>
+    </main>
+    <dialog class="dialog">Gotchya 👌</dialog>
+    <dialog class="dialog" open>
+      <h2>Game Settings</h2>
+      <form class="game-settings-form" method="dialog">
+        <div class="switch-and-label">
+          <div class="toggle-wrapper ai-on-toggle">
+            <input
+              type="checkbox"
+              id="ai-on-toggle"
+              aria-label="toggle ai"
+              class="toggle-checkbox"
+            />
+            <div class="toggle-circle"></div>
+          </div>
+          <label for="ai-on-toggle" class="toggle-label">
+            Play Against AI
+          </label>
+        </div>
+        <div class="switch-and-label">
+          <div class="toggle-wrapper ai-letter-toggle">
+            <input
+              type="checkbox"
+              id="ai-letter-toggle"
+              aria-label="dark mode toggle"
+              class="toggle-checkbox"
+            />
+            <div class="toggle-circle"></div>
+            <span class="toggle-span">x</span>
+            <span class="toggle-span">o</span>
+          </div>
+          <label for="ai-letter-toggle" class="toggle-label"> AI Letter </label>
+        </div>
+        <div class="form-btns">
+          <button id="cancel-settings" class="btn reset-btn">Cancel</button>
+          <button id="confirm-settings" class="btn reset-btn">New Game</button>
+        </div>
+      </form>
+    </dialog>
   </body>
 </html>
