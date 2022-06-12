@@ -1,3 +1,4 @@
+//todo: x in top left corner then move bottom right gets no index
 const areArrsEqual = (arr1, arr2) => {
   let result = true;
   arr1.forEach((v, i) => {
@@ -59,6 +60,7 @@ const findNeededBlock = (binary) => {
     if (binary[7] === "b" && !binary[6]) return 6;
     if (binary[6] === "b" && !binary[7]) return 7;
   }
+  return null;
 };
 
 const findThroatPunch = (binary) => {
@@ -104,7 +106,7 @@ const playStrategic = (game, currentLetter) => {
 
   const neededBlock = findNeededBlock(binary);
   const availableJugularHit = findThroatPunch(binary);
-
+  console.log({ binary, neededBlock, availableJugularHit });
   if (availableJugularHit !== null) return availableJugularHit;
   if (neededBlock !== null) return neededBlock;
   return getRandomAvailableBlock(game);
@@ -220,6 +222,16 @@ const playXTurn2 = (game) => {
   }
 
   return playStrategic(game, "x");
+};
+
+const playOTurn2 = (game) => {
+  if (areArrsEqual(game, ["x", "", "", "", "o", "", "", "", "x"])) {
+    return getRandomOption([1, 3, 5, 7]);
+  }
+  if (areArrsEqual(game, ["", "", "x", "", "o", "", "x", "", ""])) {
+    return getRandomOption([1, 3, 5, 7]);
+  }
+  return playStrategic(game, "o");
 };
 
 const playXTurn3 = (game) => {
@@ -469,7 +481,7 @@ export const getIndexFromAi = (game) => {
   if (length === 0) return playXTurn1();
   if (length === 1) return playOTurn1(game);
   if (length === 2) return playXTurn2(game);
-  if (length === 3) return playStrategic(game, "o");
+  if (length === 3) return playOTurn2(game, "o");
   if (length === 4) return playXTurn3(game);
   if (length === 5) return playStrategic(game, "o");
   if (length === 6) return playXTurn4(game);
