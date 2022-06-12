@@ -106,7 +106,7 @@ const playStrategic = (game, currentLetter) => {
 
   const neededBlock = findNeededBlock(binary);
   const availableJugularHit = findThroatPunch(binary);
-  console.log({ binary, neededBlock, availableJugularHit });
+
   if (availableJugularHit !== null) return availableJugularHit;
   if (neededBlock !== null) return neededBlock;
   return getRandomAvailableBlock(game);
