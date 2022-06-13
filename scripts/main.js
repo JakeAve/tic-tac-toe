@@ -76,10 +76,12 @@ toggleCheckboxes.forEach((cb) =>
 
     if (e.target.id === "ai-on-toggle" && e.target.checked) {
       aiLetterToggle.closest(".toggle-wrapper").classList.remove("disabled");
+      aiLetterToggle.closest(".switch-and-label").classList.remove("disabled");
       aiLetterToggle.disabled = false;
     }
     if (e.target.id === "ai-on-toggle" && !e.target.checked) {
       aiLetterToggle.closest(".toggle-wrapper").classList.add("disabled");
+      aiLetterToggle.closest(".switch-and-label").classList.add("disabled");
       aiLetterToggle.disabled = true;
     }
   })

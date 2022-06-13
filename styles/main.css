@@ -14,6 +14,7 @@
   color: var(--color-1);
 }
 
+html,
 body {
   background-color: var(--color-bg);
   margin: 0;
@@ -22,27 +23,32 @@ body {
 
 main {
   margin: 0 auto;
-  max-width: 80vh;
-}
-
-main {
+  padding: 0;
   display: grid;
-  grid-template-columns: 1fr;
-  grid-template-rows: minmax(auto, 80vh) 1fr;
+  height: 100vmax;
+  max-height: -webkit-fill-available;
+  grid-template-rows: 80% min-content;
+  gap: 2rem;
 }
 
 button {
   cursor: pointer;
 }
 
+button:focus-visible {
+  outline: none;
+}
+
 .tic-tac-toe-container {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  grid-template-rows: repeat(3, 1fr);
+  grid-template-columns: repeat(3, calc(100% / 3));
+  grid-template-rows: repeat(3, calc(100% / 3));
 }
 
 .tic-tac-toe-btn {
   border: 0;
+  margin: 0;
+  padding: 0;
   background-color: transparent;
   font-size: 4rem;
   color: var(--color-1);
@@ -117,9 +123,8 @@ button {
 .reset-container {
   display: grid;
   gap: 1rem;
-  justify-content: space-around;
+  justify-content: space-evenly;
   align-items: center;
-  margin: 2rem 0;
 }
 
 .game-settings-form {
@@ -155,16 +160,12 @@ button {
   border-color: var(--background-color);
 }
 
-.toggle-wrapper.disabled {
-  cursor: not-allowed;
-  --bg-1: var(--color-bg);
-  --bg-2: var(--color-bg);
+.switch-and-label.disabled {
+  visibility: hidden;
 }
 
-.toggle-wrapper.disabled .toggle-circle {
-  background-color: var(--color-bg);
-  border-color: var(--color-bg) !important;
-  box-shadow: 0 0 0 var(--color-bg) !important;
+.switch-and-label:has(.disabled.ai-letter-toggle) {
+  visibility: hidden;
 }
 
 @keyframes color-shift-border {
@@ -197,18 +198,10 @@ button {
   left: 50%;
   bottom: unset;
   max-width: 80vw;
-  min-width: 30vw;
   max-height: 80vh;
   min-height: 25vh;
   transform: translate(-50%, -50%);
   background-color: var(--color-bg);
-  justify-content: center;
-  align-content: center;
-}
-
-.dialog[open] {
-  display: grid;
-  grid-template-columns: 1fr;
 }
 
 .dialog::backdrop {
@@ -250,12 +243,17 @@ button {
   }
 }
 
-@media screen and (min-width: 350px) {
+@media screen and (min-width: 300px) {
   .reset-container {
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(2, minmax(min-content, 25%));
     gap: 2rem;
   }
 }
 
 @media screen and (min-width: 600px) {
+  main {
+    max-width: 80vmin;
+    max-height: 100vh;
+    align-content: center;
+  }
 }
