@@ -90,6 +90,9 @@ export const resetGame = (
   onWin,
   onCatsGame
 ) => {
-  buttons.forEach((b) => (b.innerHTML = ""));
+  buttons.forEach((b) => {
+    b.innerHTML = "";
+    b.removeAttribute("letter");
+  });
   return startGame(isArtificialOponent, isArtificialX, onWin, onCatsGame);
 };
