@@ -3,7 +3,7 @@
   --background-color: #ffffff;
   --color-text: #060606;
   --color-fore-1: #e8eced;
-  --color-fore-2: var(--blue);
+  --color-fore-2: var(--accent-2);
   --color-fore-3: #c9c9c9;
 }
 
