@@ -108,3 +108,4 @@ const onCatsGame = () => {
 };
 
 reset(); // start game
+openSettings();
