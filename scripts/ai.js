@@ -1,4 +1,3 @@
-//todo: x in top left corner then move bottom right gets no index
 const areArrsEqual = (arr1, arr2) => {
   let result = true;
   arr1.forEach((v, i) => {
