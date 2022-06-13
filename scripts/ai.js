@@ -480,7 +480,7 @@ export const getIndexFromAi = (game) => {
   if (length === 0) return playXTurn1();
   if (length === 1) return playOTurn1(game);
   if (length === 2) return playXTurn2(game);
-  if (length === 3) return playOTurn2(game, "o");
+  if (length === 3) return playOTurn2(game);
   if (length === 4) return playXTurn3(game);
   if (length === 5) return playStrategic(game, "o");
   if (length === 6) return playXTurn4(game);
