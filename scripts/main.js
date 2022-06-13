@@ -23,23 +23,23 @@ const gameSettingsDialog = document.querySelector("#game-settings-dialog");
 const openSettings = () => {
   gameSettingsDialog.showModal();
   const data = captureFormData();
-  gameSettingsDialog.addEventListener(
-    "close",
+  cancelSettingsButton.addEventListener(
+    "click",
     () => {
       aiOnToggle.checked = data.shouldUseArtificialOponent;
       aiLetterToggle.checked = data.shouldArtificialBeX;
       [aiOnToggle, aiLetterToggle].forEach((t) =>
         t.dispatchEvent(new Event("change"))
       );
+      gameSettingsDialog.close();
     },
     { once: true }
   );
 };
 
 const openSettingsButton = document.querySelector("#open-settings");
-const closeSettingsButton = document.querySelector("#cancel-settings");
+const cancelSettingsButton = document.querySelector("#cancel-settings");
 openSettingsButton.addEventListener("click", openSettings);
-closeSettingsButton.addEventListener("click", () => gameSettingsDialog.close());
 
 const gameSettingsForm = document.querySelector("#game-settings-form");
 
