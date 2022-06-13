@@ -1,93 +1,110 @@
-import { getIndexFromAi } from "./ai.js";
+import { resetGame } from "./game.js";
 
-const container = document.querySelector("#tic-tac-toe-container");
+let isArtificialOponent = false;
+let isArtificialX = false;
+let endLastGame = () => {}; // used to remove event listener on container
 
-const buttons = [...container.querySelectorAll("button")];
-
-const game = ["", "", "", "", "", "", "", "", ""];
-
-let currentLetter = "x";
-let artificialOponent = true;
-let isArtificialX = true;
-
-const topRow = (arr) => [arr[0], arr[1], arr[2]];
-const middleRow = (arr) => [arr[3], arr[4], arr[5]];
-const bottomRow = (arr) => [arr[6], arr[7], arr[8]];
-const leftColumn = (arr) => [arr[0], arr[3], arr[6]];
-const middleColumn = (arr) => [arr[1], arr[4], arr[7]];
-const rightColumn = (arr) => [arr[2], arr[5], arr[8]];
-const rightDiagonal = (arr) => [arr[0], arr[4], arr[8]];
-const leftDiagonal = (arr) => [arr[2], arr[4], arr[6]];
-const checkFuncs = [
-  topRow,
-  middleRow,
-  bottomRow,
-  leftColumn,
-  middleColumn,
-  rightColumn,
-  leftDiagonal,
-  rightDiagonal,
-];
-
-const checkForWin = (arr) => {
-  let win;
-  checkFuncs.forEach((f) => {
-    if (f(arr).every((v) => v === "x")) win = "x";
-    if (f(arr).every((v) => v === "o")) win = "o";
-  });
-  return win;
+const reset = () => {
+  endLastGame();
+  const { endGame } = resetGame(
+    isArtificialOponent,
+    isArtificialX,
+    onWin,
+    onCatsGame
+  );
+  endLastGame = endGame;
 };
 
-const mapGameToBoard = () =>
-  buttons.forEach((b, i) => {
-    b.innerHTML = game[i];
-    b.setAttribute("letter", game[i]);
-  });
+const resetGameBtn = document.querySelector("#reset");
+resetGameBtn.addEventListener("click", reset);
 
-const playTurn = (index) => {
-  if (index === undefined) throw new Error("No index provided");
-  if (game[index] !== "") throw new Error("Space already marked");
-  game[index] = currentLetter;
-  mapGameToBoard();
-  const win = checkForWin(game);
-  const isCatGame = !win && game.every(Boolean);
-  if (win || isCatGame) {
-    container.removeEventListener("click", onClick);
-    if (win) setTimeout(() => alert(`${win} wins!`));
-    if (isCatGame) setTimeout(() => alert(`Cat game`));
-    return false;
+const gameSettingsDialog = document.querySelector("#game-settings-dialog");
+
+const openSettings = () => {
+  gameSettingsDialog.showModal();
+  const data = captureFormData();
+  gameSettingsDialog.addEventListener(
+    "close",
+    () => {
+      aiOnToggle.checked = data.shouldUseArtificialOponent;
+      aiLetterToggle.checked = data.shouldArtificialBeX;
+      [aiOnToggle, aiLetterToggle].forEach((t) =>
+        t.dispatchEvent(new Event("change"))
+      );
+    },
+    { once: true }
+  );
+};
+
+const openSettingsButton = document.querySelector("#open-settings");
+const closeSettingsButton = document.querySelector("#cancel-settings");
+openSettingsButton.addEventListener("click", openSettings);
+closeSettingsButton.addEventListener("click", () => gameSettingsDialog.close());
+
+const gameSettingsForm = document.querySelector("#game-settings-form");
+
+const captureFormData = () => {
+  const formData = new FormData(gameSettingsForm);
+  let shouldUseArtificialOponent = false;
+  let shouldArtificialBeX = false;
+  for (const [key, value] of formData) {
+    if (key === "artificial-oponent" && value === "on")
+      shouldUseArtificialOponent = true;
+    if (key === "artificial-oponent-letter" && value === "x")
+      shouldArtificialBeX = true;
   }
-
-  currentLetter = currentLetter === "x" ? "o" : "x";
-  return true;
+  return { shouldUseArtificialOponent, shouldArtificialBeX };
 };
 
-const onClick = (e) => {
-  if (e.target.tagName === "BUTTON") {
-    const shouldContinue = playTurn(buttons.indexOf(e.target));
-    if (artificialOponent && shouldContinue) {
-      container.removeEventListener("click", onClick);
-      setTimeout(artificialTurn, 1000);
+gameSettingsDialog.addEventListener("submit", () => {
+  const { shouldUseArtificialOponent, shouldArtificialBeX } = captureFormData();
+  isArtificialOponent = shouldUseArtificialOponent;
+  isArtificialX = shouldArtificialBeX;
+
+  reset();
+});
+
+const aiOnToggle = document.querySelector("#ai-on-toggle");
+const aiLetterToggle = document.querySelector("#ai-letter-toggle");
+const toggleCheckboxes = [aiOnToggle, aiLetterToggle];
+
+toggleCheckboxes.forEach((cb) =>
+  cb.addEventListener("change", (e) => {
+    if (e.target.checked)
+      e.target.closest(".toggle-wrapper").classList.add("checked");
+    else e.target.closest(".toggle-wrapper").classList.remove("checked");
+
+    if (e.target.id === "ai-on-toggle" && e.target.checked) {
+      aiLetterToggle.closest(".toggle-wrapper").classList.remove("disabled");
+      aiLetterToggle.disabled = false;
     }
-  }
+    if (e.target.id === "ai-on-toggle" && !e.target.checked) {
+      aiLetterToggle.closest(".toggle-wrapper").classList.add("disabled");
+      aiLetterToggle.disabled = true;
+    }
+  })
+);
+
+const messageDialog = document.querySelector("#message-dialog");
+const closeMessageDialogBtn = document.querySelector("#close-message-dialog");
+
+const showMessage = (title, message, closeBtnText = "Close") => {
+  messageDialog.querySelector("h2").textContent = title;
+  messageDialog.querySelector("p").textContent = message;
+  closeMessageDialogBtn.textContent = closeBtnText;
+  messageDialog.showModal();
 };
 
-const artificialTurn = () => {
-  const index = getIndexFromAi(game);
-  playTurn(index);
-  container.addEventListener("click", onClick);
+const closeMessageDialog = () => messageDialog.close();
+
+closeMessageDialogBtn.addEventListener("click", closeMessageDialog);
+
+const onWin = (letter) => {
+  showMessage(`Gotchya 👌`, `${letter.toUpperCase()} wins!`, "Try again");
 };
 
-container.addEventListener("click", onClick);
-
-const resetGame = () => {
-  game.forEach((v, i) => (game[i] = ""));
-  mapGameToBoard();
-  container.addEventListener("click", onClick);
-  currentLetter = "x";
-  if (isArtificialX) artificialTurn();
+const onCatsGame = () => {
+  showMessage("Cat's Game 🐈", "It's a cat's game!", "Keep trying");
 };
 
-document.querySelector("#reset").addEventListener("click", resetGame);
-
-if (isArtificialX) artificialTurn();
+reset(); // start game

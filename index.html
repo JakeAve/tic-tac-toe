@@ -26,15 +26,21 @@
         <button id="open-settings" class="btn reset-btn">Settings</button>
       </div>
     </main>
-    <dialog class="dialog">Gotchya 👌</dialog>
-    <dialog class="dialog" open>
+    <dialog class="dialog message-dialog" id="message-dialog">
+      <h2></h2>
+      <p></p>
+      <button class="btn dialog-btn" id="close-message-dialog">Close</button>
+    </dialog>
+    <dialog class="dialog" id="game-settings-dialog">
       <h2>Game Settings</h2>
-      <form class="game-settings-form" method="dialog">
+      <form class="game-settings-form" id="game-settings-form" method="dialog">
         <div class="switch-and-label">
           <div class="toggle-wrapper ai-on-toggle">
             <input
               type="checkbox"
               id="ai-on-toggle"
+              name="artificial-oponent"
+              value="on"
               aria-label="toggle ai"
               class="toggle-checkbox"
             />
@@ -45,12 +51,15 @@
           </label>
         </div>
         <div class="switch-and-label">
-          <div class="toggle-wrapper ai-letter-toggle">
+          <div class="toggle-wrapper ai-letter-toggle disabled">
             <input
               type="checkbox"
               id="ai-letter-toggle"
+              name="artificial-oponent-letter"
+              value="x"
               aria-label="dark mode toggle"
               class="toggle-checkbox"
+              disabled
             />
             <div class="toggle-circle"></div>
             <span class="toggle-span">x</span>
@@ -59,8 +68,12 @@
           <label for="ai-letter-toggle" class="toggle-label"> AI Letter </label>
         </div>
         <div class="form-btns">
-          <button id="cancel-settings" class="btn reset-btn">Cancel</button>
-          <button id="confirm-settings" class="btn reset-btn">New Game</button>
+          <button type="button" id="cancel-settings" class="btn reset-btn">
+            Cancel
+          </button>
+          <button type="submit" id="confirm-settings" class="btn reset-btn">
+            New Game
+          </button>
         </div>
       </form>
     </dialog>
