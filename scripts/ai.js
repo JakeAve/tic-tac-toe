@@ -59,6 +59,11 @@ const findNeededBlock = (binary) => {
     if (binary[7] === "b" && !binary[6]) return 6;
     if (binary[6] === "b" && !binary[7]) return 7;
   }
+  // hit corners when possible
+  if (binary[1] === "b" && binary[3] === "b" && !binary[0]) return 0;
+  if (binary[1] === "b" && binary[5] === "b" && !binary[2]) return 2;
+  if (binary[3] === "b" && binary[7] === "b" && !binary[6]) return 6;
+  if (binary[5] === "b" && binary[7] === "b" && !binary[8]) return 8;
   return null;
 };
 
@@ -230,6 +235,31 @@ const playOTurn2 = (game) => {
   if (areArrsEqual(game, ["", "", "x", "", "o", "", "x", "", ""])) {
     return getRandomOption([1, 3, 5, 7]);
   }
+  if (areArrsEqual(game, ["x", "", "", "", "o", "", "", "x", ""])) {
+    return 3;
+  }
+  if (areArrsEqual(game, ["x", "", "", "", "o", "x", "", "", ""])) {
+    return 2;
+  }
+  if (areArrsEqual(game, ["", "", "x", "", "o", "", "", "x", ""])) {
+    return 5;
+  }
+  if (areArrsEqual(game, ["", "", "x", "x", "o", "", "", "", ""])) {
+    return 1;
+  }
+  if (areArrsEqual(game, ["", "x", "", "", "o", "", "x", "", ""])) {
+    return 3;
+  }
+  if (areArrsEqual(game, ["", "", "", "", "o", "x", "x", "", ""])) {
+    return 3;
+  }
+  if (areArrsEqual(game, ["", "x", "", "", "o", "", "", "", "x"])) {
+    return 5;
+  }
+  if (areArrsEqual(game, ["", "", "", "x", "o", "", "", "", "x"])) {
+    return 7;
+  }
+
   return playStrategic(game, "o");
 };
 
