@@ -199,7 +199,6 @@ button:focus-visible {
   bottom: unset;
   max-width: 80vw;
   max-height: 80vh;
-  min-height: 25vh;
   transform: translate(-50%, -50%);
   background-color: var(--color-bg);
 }
@@ -241,6 +240,15 @@ button:focus-visible {
   100% {
     transform: scale(1, 1) translate(-50%, -50%);
   }
+}
+
+.dialog-content {
+  display: grid;
+  grid-template-columns: 1fr;
+  justify-content: center;
+  justify-items: center;
+  width: 25rem;
+  max-width: 100%;
 }
 
 @media screen and (min-width: 300px) {
