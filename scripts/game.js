@@ -3,32 +3,32 @@ import { getIndexFromAi } from "./ai.js";
 const container = document.querySelector("#tic-tac-toe-container");
 const buttons = [...container.querySelectorAll("button")];
 
-const getTopRow = (arr) => [arr[0], arr[1], arr[2]];
-const getMiddleRow = (arr) => [arr[3], arr[4], arr[5]];
-const getBottomRow = (arr) => [arr[6], arr[7], arr[8]];
-const getLeftColumn = (arr) => [arr[0], arr[3], arr[6]];
-const getMiddleColumn = (arr) => [arr[1], arr[4], arr[7]];
-const getRightColumn = (arr) => [arr[2], arr[5], arr[8]];
-const getRightDiagonal = (arr) => [arr[0], arr[4], arr[8]];
-const getLeftDiagonal = (arr) => [arr[2], arr[4], arr[6]];
-const checkFuncs = [
-  getTopRow,
-  getMiddleRow,
-  getBottomRow,
-  getLeftColumn,
-  getMiddleColumn,
-  getRightColumn,
-  getLeftDiagonal,
-  getRightDiagonal,
+const waysToWin = [
+  [0, 1, 2],
+  [3, 4, 5],
+  [6, 7, 8],
+  [0, 3, 6],
+  [1, 4, 7],
+  [2, 5, 8],
+  [0, 4, 8],
+  [2, 4, 6],
 ];
 
 const checkForWin = (arr) => {
-  let win;
-  checkFuncs.forEach((f) => {
-    if (f(arr).every((v) => v === "x")) win = "x";
-    if (f(arr).every((v) => v === "o")) win = "o";
+  let idxs = [];
+  let letter;
+  waysToWin.forEach((w) => {
+    if (w.every((idx) => arr[idx] === "x")) {
+      idxs.push(...w);
+      letter = "x";
+    }
+    if (w.every((idx) => arr[idx] === "o")) {
+      idxs.push(...w);
+      letter = "o";
+    }
   });
-  return win;
+  if (!letter) return null;
+  return { idxs, letter };
 };
 
 const startGame = (isArtificialOponent, isArtificialX, onWin, onCatsGame) => {
@@ -40,47 +40,57 @@ const startGame = (isArtificialOponent, isArtificialX, onWin, onCatsGame) => {
       b.setAttribute("letter", game[i]);
     });
 
-  const playTurn = (index) => {
+  const playTurn = (index, onNoGameEnd, onGameEnd) => {
     if (index === undefined) throw new Error("No index provided");
     if (game[index] !== "") throw new Error("Space already marked");
     game[index] = currentLetter;
     mapGameToBoard();
+
     const win = checkForWin(game);
     const isCatGame = !win && game.every(Boolean);
-    if (win || isCatGame) {
-      endGame(win, isCatGame);
-      return false;
-    }
+    if (win || isCatGame) return onGameEnd(win, isCatGame);
 
     currentLetter = currentLetter === "x" ? "o" : "x";
-    return true;
+    onNoGameEnd();
   };
 
   const onClick = (e) => {
     if (e.target.tagName === "BUTTON") {
-      const shouldContinue = playTurn(buttons.indexOf(e.target));
-      if (isArtificialOponent && shouldContinue) {
-        container.removeEventListener("click", onClick);
-        setTimeout(artificialTurn, 1000);
-      }
+      const index = buttons.indexOf(e.target);
+      playTurn(
+        index,
+        () => {
+          if (isArtificialOponent) artificialTurn();
+          // else keep event listener / do nothing
+        },
+        endGame
+      );
     }
   };
 
   const endGame = (win, isCatGame) => {
     container.removeEventListener("click", onClick);
-    if (win) setTimeout(() => onWin(win), 500);
-    if (isCatGame) setTimeout(() => onCatsGame(), 500);
+    if (win) {
+      win.idxs.forEach((idx) => buttons[idx].classList.add("win"));
+      setTimeout(() => onWin(win.letter), 750);
+    }
+    if (isCatGame) setTimeout(() => onCatsGame(), 750);
   };
 
   const artificialTurn = () => {
+    container.removeEventListener("click", onClick);
     const index = getIndexFromAi(game);
-    playTurn(index);
-    container.addEventListener("click", onClick);
+    setTimeout(() => {
+      playTurn(
+        index,
+        () => container.addEventListener("click", onClick),
+        endGame
+      );
+    }, 1000);
   };
 
-  container.addEventListener("click", onClick);
-
   if (isArtificialX) artificialTurn();
+  else container.addEventListener("click", onClick);
   return { endGame };
 };
 
@@ -93,6 +103,7 @@ export const resetGame = (
   buttons.forEach((b) => {
     b.innerHTML = "";
     b.removeAttribute("letter");
+    b.classList.remove("win");
   });
   return startGame(isArtificialOponent, isArtificialX, onWin, onCatsGame);
 };
