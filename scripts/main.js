@@ -1,4 +1,5 @@
 import { resetGame } from "./game.js";
+import "./dialogPolyfill.js";
 
 let isArtificialOponent = false;
 let isArtificialX = false;
