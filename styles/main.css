@@ -58,7 +58,7 @@ button:focus-visible {
 }
 
 .tic-tac-toe-btn:not([letter="x"]):not([letter="o"]):hover,
-.tic-tac-toe-btn:focus {
+.tic-tac-toe-btn:focus-visible {
   background-color: var(--color-bg-hover);
 }
 
