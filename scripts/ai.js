@@ -127,138 +127,113 @@ const playOTurn1 = (game) => {
 
 const playXTurn2 = (game) => {
   // x turn 2a
-  if (areArrsEqual(game, ["x", "o", "", "", "", "", "", "", ""])) {
-    return 6;
-  }
-  if (areArrsEqual(game, ["x", "", "", "o", "", "", "", "", ""])) {
-    return 2;
-  }
-  if (areArrsEqual(game, ["", "o", "x", "", "", "", "", "", ""])) {
-    return 8;
-  }
-  if (areArrsEqual(game, ["", "", "x", "", "", "o", "", "", ""])) {
-    return 0;
-  }
-  if (areArrsEqual(game, ["", "", "", "o", "", "", "x", "", ""])) {
-    return 8;
-  }
-  if (areArrsEqual(game, ["", "", "", "", "", "", "x", "o", ""])) {
-    return 0;
-  }
-  if (areArrsEqual(game, ["", "", "", "", "", "o", "", "", "x"])) {
-    return 6;
-  }
+  if (areArrsEqual(game, ["x", "o", "", "", "", "", "", "", ""])) return 6;
+
+  if (areArrsEqual(game, ["x", "", "", "o", "", "", "", "", ""])) return 2;
+
+  if (areArrsEqual(game, ["", "o", "x", "", "", "", "", "", ""])) return 8;
+
+  if (areArrsEqual(game, ["", "", "x", "", "", "o", "", "", ""])) return 0;
+
+  if (areArrsEqual(game, ["", "", "", "o", "", "", "x", "", ""])) return 8;
+
+  if (areArrsEqual(game, ["", "", "", "", "", "", "x", "o", ""])) return 0;
+
+  if (areArrsEqual(game, ["", "", "", "", "", "o", "", "", "x"])) return 6;
+
   // x turn 2b
-  if (areArrsEqual(game, ["x", "", "", "", "", "", "o", "", ""])) {
-    return 2;
-  }
-  if (areArrsEqual(game, ["x", "", "o", "", "", "", "", "", ""])) {
-    return 6;
-  }
-  if (areArrsEqual(game, ["o", "", "x", "", "", "", "", "", ""])) {
-    return 8;
-  }
-  if (areArrsEqual(game, ["", "", "x", "", "", "", "", "", "o"])) {
-    return 0;
-  }
-  if (areArrsEqual(game, ["", "", "", "", "", "", "x", "", "o"])) {
-    return 0;
-  }
-  if (areArrsEqual(game, ["o", "", "", "", "", "", "x", "", ""])) {
-    return 8;
-  }
-  if (areArrsEqual(game, ["", "", "", "", "", "", "o", "", "x"])) {
-    return 2;
-  }
-  if (areArrsEqual(game, ["", "", "o", "", "", "", "", "", "x"])) {
-    return 6;
-  }
+  if (areArrsEqual(game, ["x", "", "", "", "", "", "o", "", ""])) return 2;
+
+  if (areArrsEqual(game, ["x", "", "o", "", "", "", "", "", ""])) return 6;
+
+  if (areArrsEqual(game, ["o", "", "x", "", "", "", "", "", ""])) return 8;
+
+  if (areArrsEqual(game, ["", "", "x", "", "", "", "", "", "o"])) return 0;
+
+  if (areArrsEqual(game, ["", "", "", "", "", "", "x", "", "o"])) return 0;
+
+  if (areArrsEqual(game, ["o", "", "", "", "", "", "x", "", ""])) return 8;
+
+  if (areArrsEqual(game, ["", "", "", "", "", "", "o", "", "x"])) return 2;
+
+  if (areArrsEqual(game, ["", "", "o", "", "", "", "", "", "x"])) return 6;
+
   // x turn 2c
-  if (areArrsEqual(game, ["x", "", "", "", "", "", "", "o", ""])) {
-    return 6;
-  }
-  if (areArrsEqual(game, ["x", "", "", "", "", "o", "", "", ""])) {
-    return 2;
-  }
-  if (areArrsEqual(game, ["", "", "x", "o", "", "", "", "", ""])) {
-    return 8;
-  }
-  if (areArrsEqual(game, ["", "", "x", "", "", "", "", "o", ""])) {
-    return 0;
-  }
-  if (areArrsEqual(game, ["", "", "", "", "", "o", "x", "", ""])) {
-    return 8;
-  }
-  if (areArrsEqual(game, ["", "o", "", "", "", "", "x", "", ""])) {
-    return 0;
-  }
-  if (areArrsEqual(game, ["", "", "", "o", "", "", "", "", "x"])) {
-    return 6;
-  }
-  if (areArrsEqual(game, ["", "o", "", "", "", "", "", "", "x"])) {
-    return 2;
-  }
+  if (areArrsEqual(game, ["x", "", "", "", "", "", "", "o", ""])) return 6;
+
+  if (areArrsEqual(game, ["x", "", "", "", "", "o", "", "", ""])) return 2;
+
+  if (areArrsEqual(game, ["", "", "x", "o", "", "", "", "", ""])) return 8;
+
+  if (areArrsEqual(game, ["", "", "x", "", "", "", "", "o", ""])) return 0;
+
+  if (areArrsEqual(game, ["", "", "", "", "", "o", "x", "", ""])) return 8;
+
+  if (areArrsEqual(game, ["", "o", "", "", "", "", "x", "", ""])) return 0;
+
+  if (areArrsEqual(game, ["", "", "", "o", "", "", "", "", "x"])) return 6;
+
+  if (areArrsEqual(game, ["", "o", "", "", "", "", "", "", "x"])) return 2;
+
   // x turn 2d
-  if (areArrsEqual(game, ["x", "", "", "", "", "", "", "", "o"])) {
+  if (areArrsEqual(game, ["x", "", "", "", "", "", "", "", "o"]))
     return getRandomOption([2, 6]);
-  }
-  if (areArrsEqual(game, ["", "", "x", "", "", "", "o", "", ""])) {
+
+  if (areArrsEqual(game, ["", "", "x", "", "", "", "o", "", ""]))
     return getRandomOption([0, 8]);
-  }
-  if (areArrsEqual(game, ["", "", "o", "", "", "", "x", "", ""])) {
+
+  if (areArrsEqual(game, ["", "", "o", "", "", "", "x", "", ""]))
     return getRandomOption([0, 8]);
-  }
-  if (areArrsEqual(game, ["o", "", "", "", "", "", "", "", "x"])) {
+
+  if (areArrsEqual(game, ["o", "", "", "", "", "", "", "", "x"]))
     return getRandomOption([2, 6]);
-  }
+
   // x turn 2e
-  if (areArrsEqual(game, ["x", "", "", "", "o", "", "", "", ""])) {
-    return 8;
-  }
-  if (areArrsEqual(game, ["", "", "x", "", "o", "", "", "", ""])) {
-    return 6;
-  }
-  if (areArrsEqual(game, ["", "", "", "", "o", "", "x", "", ""])) {
-    return 2;
-  }
-  if (areArrsEqual(game, ["", "", "", "", "o", "", "", "", "x"])) {
-    return 0;
-  }
+  if (areArrsEqual(game, ["x", "", "", "", "o", "", "", "", ""])) return 8;
+
+  if (areArrsEqual(game, ["", "", "x", "", "o", "", "", "", ""])) return 6;
+
+  if (areArrsEqual(game, ["", "", "", "", "o", "", "x", "", ""])) return 2;
+
+  if (areArrsEqual(game, ["", "", "", "", "o", "", "", "", "x"])) return 0;
 
   return playStrategic(game, "x");
 };
 
 const playOTurn2 = (game) => {
-  if (areArrsEqual(game, ["x", "", "", "", "o", "", "", "", "x"])) {
+  if (areArrsEqual(game, ["x", "", "", "", "o", "", "", "", "x"]))
     return getRandomOption([1, 3, 5, 7]);
-  }
-  if (areArrsEqual(game, ["", "", "x", "", "o", "", "x", "", ""])) {
+
+  if (areArrsEqual(game, ["", "", "x", "", "o", "", "x", "", ""]))
     return getRandomOption([1, 3, 5, 7]);
-  }
-  if (areArrsEqual(game, ["x", "", "", "", "o", "", "", "x", ""])) {
-    return 3;
-  }
-  if (areArrsEqual(game, ["x", "", "", "", "o", "x", "", "", ""])) {
-    return 2;
-  }
-  if (areArrsEqual(game, ["", "", "x", "", "o", "", "", "x", ""])) {
-    return 5;
-  }
-  if (areArrsEqual(game, ["", "", "x", "x", "o", "", "", "", ""])) {
-    return 1;
-  }
-  if (areArrsEqual(game, ["", "x", "", "", "o", "", "x", "", ""])) {
-    return 3;
-  }
-  if (areArrsEqual(game, ["", "", "", "", "o", "x", "x", "", ""])) {
-    return 3;
-  }
-  if (areArrsEqual(game, ["", "x", "", "", "o", "", "", "", "x"])) {
-    return 5;
-  }
-  if (areArrsEqual(game, ["", "", "", "x", "o", "", "", "", "x"])) {
-    return 7;
-  }
+
+  if (areArrsEqual(game, ["x", "", "", "", "o", "", "", "x", ""])) return 3;
+
+  if (areArrsEqual(game, ["x", "", "", "", "o", "x", "", "", ""])) return 2;
+
+  if (areArrsEqual(game, ["", "", "x", "", "o", "", "", "x", ""])) return 5;
+
+  if (areArrsEqual(game, ["", "", "x", "x", "o", "", "", "", ""])) return 1;
+
+  if (areArrsEqual(game, ["", "x", "", "", "o", "", "x", "", ""])) return 3;
+
+  if (areArrsEqual(game, ["", "", "", "", "o", "x", "x", "", ""])) return 3;
+
+  if (areArrsEqual(game, ["", "x", "", "", "o", "", "", "", "x"])) return 5;
+
+  if (areArrsEqual(game, ["", "", "", "x", "o", "", "", "", "x"])) return 7;
+
+  if (areArrsEqual(game, ["x", "", "", "", "x", "", "", "", "o"]))
+    return getRandomOption([2, 6]);
+
+  if (areArrsEqual(game, ["", "", "x", "", "x", "", "o", "", ""]))
+    return getRandomOption([0, 8]);
+
+  if (areArrsEqual(game, ["", "", "o", "", "x", "", "x", "", ""]))
+    return getRandomOption([0, 8]);
+
+  if (areArrsEqual(game, ["o", "", "", "", "x", "", "", "", "x"]))
+    return getRandomOption([2, 6]);
 
   return playStrategic(game, "o");
 };
@@ -266,80 +241,62 @@ const playOTurn2 = (game) => {
 const playXTurn3 = (game) => {
   // x turn 3a
   // x3a.1
-  if (areArrsEqual(game, ["x", "o", "", "o", "", "", "x", "", ""])) {
-    return 8;
-  }
+  if (areArrsEqual(game, ["x", "o", "", "o", "", "", "x", "", ""])) return 8;
+
   // x3a.2
-  if (areArrsEqual(game, ["x", "o", "x", "o", "", "", "", "", ""])) {
-    return 8;
-  }
+  if (areArrsEqual(game, ["x", "o", "x", "o", "", "", "", "", ""])) return 8;
+
   // x3a.3
-  if (areArrsEqual(game, ["", "o", "x", "", "", "o", "", "", "x"])) {
-    return 6;
-  }
+  if (areArrsEqual(game, ["", "o", "x", "", "", "o", "", "", "x"])) return 6;
+
   // x3a.4
-  if (areArrsEqual(game, ["x", "o", "x", "", "", "o", "", "", ""])) {
-    return 6;
-  }
+  if (areArrsEqual(game, ["x", "o", "x", "", "", "o", "", "", ""])) return 6;
+
   // x3a.5
-  if (areArrsEqual(game, ["", "", "", "o", "", "", "x", "o", "x"])) {
-    return 2;
-  }
+  if (areArrsEqual(game, ["", "", "", "o", "", "", "x", "o", "x"])) return 2;
+
   // x3a.6
-  if (areArrsEqual(game, ["x", "", "", "o", "", "", "x", "o", ""])) {
-    return 2;
-  }
+  if (areArrsEqual(game, ["x", "", "", "o", "", "", "x", "o", ""])) return 2;
+
   // x3a.7
-  if (areArrsEqual(game, ["", "", "", "", "", "o", "x", "o", "x"])) {
-    return 0;
-  }
+  if (areArrsEqual(game, ["", "", "", "", "", "o", "x", "o", "x"])) return 0;
+
   // x3a.8
-  if (areArrsEqual(game, ["", "", "x", "", "", "o", "", "o", "x"])) {
-    return 0;
-  }
+  if (areArrsEqual(game, ["", "", "x", "", "", "o", "", "o", "x"])) return 0;
+
   // x turn 3b
   // x3b.1
-  if (areArrsEqual(game, ["x", "o", "x", "", "", "", "o", "", ""])) {
-    return 8;
-  }
+  if (areArrsEqual(game, ["x", "o", "x", "", "", "", "o", "", ""])) return 8;
+
   // x3b.2
-  if (areArrsEqual(game, ["x", "", "o", "o", "", "", "x", "", ""])) {
-    return 8;
-  }
+  if (areArrsEqual(game, ["x", "", "o", "o", "", "", "x", "", ""])) return 8;
+
   // x3b.3
-  if (areArrsEqual(game, ["o", "", "x", "", "", "o", "", "", "x"])) {
-    return 6;
-  }
+  if (areArrsEqual(game, ["o", "", "x", "", "", "o", "", "", "x"])) return 6;
+
   // x3b.4
-  if (areArrsEqual(game, ["x", "o", "x", "", "", "", "", "", "o"])) {
-    return 6;
-  }
+  if (areArrsEqual(game, ["x", "o", "x", "", "", "", "", "", "o"])) return 6;
+
   // x3b.5
-  if (areArrsEqual(game, ["x", "", "", "o", "", "", "x", "", "o"])) {
-    return 2;
-  }
+  if (areArrsEqual(game, ["x", "", "", "o", "", "", "x", "", "o"])) return 2;
+
   // x3b.6
-  if (areArrsEqual(game, ["o", "", "", "", "", "", "x", "o", "x"])) {
-    return 2;
-  }
+  if (areArrsEqual(game, ["o", "", "", "", "", "", "x", "o", "x"])) return 2;
+
   // x3b.7
-  if (areArrsEqual(game, ["", "", "x", "", "", "o", "o", "", "x"])) {
-    return 0;
-  }
+  if (areArrsEqual(game, ["", "", "x", "", "", "o", "o", "", "x"])) return 0;
+
   // x3b.8
-  if (areArrsEqual(game, ["", "", "o", "", "", "", "x", "o", "x"])) {
-    return 0;
-  }
+  if (areArrsEqual(game, ["", "", "o", "", "", "", "x", "o", "x"])) return 0;
+
   // see 3a.8
   // x turn 3c
   // see 3a.6
   // see 3a.4
-  if (areArrsEqual(game, ["", "", "x", "o", "", "o", "", "", "x"])) {
-    return 6;
-  }
-  if (areArrsEqual(game, ["x", "o", "x", "", "", "", "", "o", ""])) {
-    return 8;
-  }
+  if (areArrsEqual(game, ["", "", "x", "o", "", "o", "", "", "x"])) return 6;
+
+  if (areArrsEqual(game, ["x", "o", "x", "", "", "", "", "o", ""])) return 8;
+
   // see 3a.7
   // see 3a.1
   // see 3a.5
@@ -350,121 +307,93 @@ const playXTurn3 = (game) => {
 const playXTurn4 = (game) => {
   /*        x turn 4a       */
   // x4a.1
-  if (areArrsEqual(game, ["x", "o", "", "o", "o", "", "x", "", "x"])) {
-    return 7;
-  }
+  if (areArrsEqual(game, ["x", "o", "", "o", "o", "", "x", "", "x"])) return 7;
+
   // x4a.2
-  if (areArrsEqual(game, ["x", "o", "", "o", "", "", "x", "o", "x"])) {
-    return 5;
-  }
+  if (areArrsEqual(game, ["x", "o", "", "o", "", "", "x", "o", "x"])) return 5;
+
   // x4a.3
-  if (areArrsEqual(game, ["x", "o", "x", "o", "o", "", "", "", "x"])) {
-    return 5;
-  }
+  if (areArrsEqual(game, ["x", "o", "x", "o", "o", "", "", "", "x"])) return 5;
+
   // x4a.4
-  if (areArrsEqual(game, ["x", "o", "x", "o", "", "o", "", "", "x"])) {
-    return 4;
-  }
+  if (areArrsEqual(game, ["x", "o", "x", "o", "", "o", "", "", "x"])) return 4;
+
   // x4a.5
-  if (areArrsEqual(game, ["", "o", "x", "", "o", "o", "x", "", "x"])) {
-    return 7;
-  }
+  if (areArrsEqual(game, ["", "o", "x", "", "o", "o", "x", "", "x"])) return 7;
+
   // x4a.6
-  if (areArrsEqual(game, ["", "o", "x", "", "", "o", "x", "o", "x"])) {
-    return 4;
-  }
+  if (areArrsEqual(game, ["", "o", "x", "", "", "o", "x", "o", "x"])) return 4;
+
   // x4a.7
-  if (areArrsEqual(game, ["x", "o", "x", "", "o", "o", "x", "", ""])) {
-    return 3;
-  }
+  if (areArrsEqual(game, ["x", "o", "x", "", "o", "o", "x", "", ""])) return 3;
+
   // x4a.8
-  if (areArrsEqual(game, ["x", "o", "x", "o", "", "o", "x", "", ""])) {
-    return 4;
-  }
+  if (areArrsEqual(game, ["x", "o", "x", "o", "", "o", "x", "", ""])) return 4;
+
   // x4a.9
-  if (areArrsEqual(game, ["", "", "x", "o", "o", "", "x", "o", "x"])) {
-    return 5;
-  }
+  if (areArrsEqual(game, ["", "", "x", "o", "o", "", "x", "o", "x"])) return 5;
+
   // x4a.10
-  if (areArrsEqual(game, ["", "", "x", "o", "", "o", "x", "o", "x"])) {
-    return 4;
-  }
+  if (areArrsEqual(game, ["", "", "x", "o", "", "o", "x", "o", "x"])) return 4;
+
   // x4a.11
-  if (areArrsEqual(game, ["x", "", "x", "o", "o", "", "x", "o", ""])) {
-    return 1;
-  }
+  if (areArrsEqual(game, ["x", "", "x", "o", "o", "", "x", "o", ""])) return 1;
+
   // x4a.12
-  if (areArrsEqual(game, ["x", "o", "x", "o", "", "", "x", "o", ""])) {
-    return 4;
-  }
+  if (areArrsEqual(game, ["x", "o", "x", "o", "", "", "x", "o", ""])) return 4;
+
   // x4a.13
-  if (areArrsEqual(game, ["x", "", "", "", "o", "o", "x", "o", "x"])) {
-    return 3;
-  }
+  if (areArrsEqual(game, ["x", "", "", "", "o", "o", "x", "o", "x"])) return 3;
+
   // x4a.14
-  if (areArrsEqual(game, ["x", "", "", "o", "", "o", "x", "o", "x"])) {
-    return 4;
-  }
+  if (areArrsEqual(game, ["x", "", "", "o", "", "o", "x", "o", "x"])) return 4;
+
   // x4a.15
-  if (areArrsEqual(game, ["x", "", "x", "", "o", "o", "", "o", "x"])) {
-    return 1;
-  }
+  if (areArrsEqual(game, ["x", "", "x", "", "o", "o", "", "o", "x"])) return 1;
+
   // x4a.16
-  if (areArrsEqual(game, ["x", "o", "x", "", "", "o", "", "o", "x"])) {
-    return 4;
-  }
+  if (areArrsEqual(game, ["x", "o", "x", "", "", "o", "", "o", "x"])) return 4;
+
   /*        x turn 4b       */
   // x4b.1
-  if (areArrsEqual(game, ["x", "o", "x", "", "o", "", "o", "", "x"])) {
-    return 5;
-  }
+  if (areArrsEqual(game, ["x", "o", "x", "", "o", "", "o", "", "x"])) return 5;
+
   // x4b.2
-  if (areArrsEqual(game, ["x", "o", "x", "", "", "o", "o", "", "x"])) {
-    return 4;
-  }
+  if (areArrsEqual(game, ["x", "o", "x", "", "", "o", "o", "", "x"])) return 4;
+
   // x4b.3
-  if (areArrsEqual(game, ["x", "", "o", "o", "o", "", "x", "", "x"])) {
-    return 7;
-  }
+  if (areArrsEqual(game, ["x", "", "o", "o", "o", "", "x", "", "x"])) return 7;
+
   // x4b.4
-  if (areArrsEqual(game, ["x", "", "o", "o", "", "", "x", "o", "x"])) {
-    return 4;
-  }
+  if (areArrsEqual(game, ["x", "", "o", "o", "", "", "x", "o", "x"])) return 4;
+
   // x4b.5
-  if (areArrsEqual(game, ["o", "", "x", "", "o", "o", "x", "", "x"])) {
-    return 7;
-  }
+  if (areArrsEqual(game, ["o", "", "x", "", "o", "o", "x", "", "x"])) return 7;
+
   // x4b.6
-  if (areArrsEqual(game, ["o", "", "x", "", "", "o", "x", "o", "x"])) {
-    return 4;
-  }
+  if (areArrsEqual(game, ["o", "", "x", "", "", "o", "x", "o", "x"])) return 4;
+
   // x4b.7
-  if (areArrsEqual(game, ["x", "o", "x", "", "o", "", "x", "", "o"])) {
-    return 3;
-  }
+  if (areArrsEqual(game, ["x", "o", "x", "", "o", "", "x", "", "o"])) return 3;
+
   // x4b.8
-  if (areArrsEqual(game, ["x", "o", "x", "o", "", "", "x", "", "o"])) {
-    return 4;
-  }
+  if (areArrsEqual(game, ["x", "o", "x", "o", "", "", "x", "", "o"])) return 4;
+
   // x4b.9
-  if (areArrsEqual(game, ["x", "", "x", "o", "o", "", "x", "", "o"])) {
-    return 1;
-  }
+  if (areArrsEqual(game, ["x", "", "x", "o", "o", "", "x", "", "o"])) return 1;
+
   // x4b.10 same as 4b.8
   // x4b.11
-  if (areArrsEqual(game, ["o", "", "x", "", "o", "", "x", "o", "x"])) {
-    return 5;
-  }
+  if (areArrsEqual(game, ["o", "", "x", "", "o", "", "x", "o", "x"])) return 5;
+
   // x4b.12 same as 4b.6
   // x4b.13
-  if (areArrsEqual(game, ["x", "", "x", "", "o", "o", "o", "", "x"])) {
-    return 1;
-  }
+  if (areArrsEqual(game, ["x", "", "x", "", "o", "o", "o", "", "x"])) return 1;
+
   // x4b.14 same as 4b.2
   // x4b.15
-  if (areArrsEqual(game, ["x", "", "o", "", "o", "", "x", "o", "x"])) {
-    return 3;
-  }
+  if (areArrsEqual(game, ["x", "", "o", "", "o", "", "x", "o", "x"])) return 3;
+
   // x4b.16 same as 4b.4
 
   /*        x turn 4c         */
@@ -472,21 +401,18 @@ const playXTurn4 = (game) => {
   // see 4a.12
   // see 4a.7
   // see 4a.8
-  if (areArrsEqual(game, ["", "", "x", "o", "o", "o", "x", "", "x"])) {
-    return 7;
-  }
+  if (areArrsEqual(game, ["", "", "x", "o", "o", "o", "x", "", "x"])) return 7;
+
   // see 4a.10
-  if (areArrsEqual(game, ["x", "o", "x", "", "o", "", "", "o", "x"])) {
-    return 5;
-  }
+  if (areArrsEqual(game, ["x", "o", "x", "", "o", "", "", "o", "x"])) return 5;
+
   // see 4a.16
   // see 4a.13
   // see 4a.14
   // see 4a.1
   // see 4a.2
-  if (areArrsEqual(game, ["", "", "x", "o", "", "", "x", "o", "x"])) {
-    return 2;
-  }
+  if (areArrsEqual(game, ["", "", "x", "o", "", "", "x", "o", "x"])) return 2;
+
   // see 4a.9
   // see 4a.10
   // see 4a.5
