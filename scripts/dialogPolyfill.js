@@ -10,6 +10,12 @@ const showModalPolyFill = (dialogEl) => {
     dialogEl.removeAttribute("open");
     return dialogEl;
   };
+  dialogEl
+    .querySelector('form[method="dialog"]')
+    ?.addEventListener("submit", (e) => {
+      e.preventDefault();
+      dialogEl.close();
+    });
 };
 
 document.querySelectorAll("dialog").forEach(showModalPolyFill);
