@@ -45,6 +45,9 @@
       <h2>Game Settings</h2>
       <form class="game-settings-form" id="game-settings-form" method="dialog">
         <div class="switch-and-label">
+          <label for="ai-on-toggle" class="toggle-label">
+            Play Against Computer
+          </label>
           <div class="toggle-wrapper ai-on-toggle">
             <input
               type="checkbox"
@@ -56,11 +59,11 @@
             />
             <div class="toggle-circle"></div>
           </div>
-          <label for="ai-on-toggle" class="toggle-label">
-            Play Against Computer
-          </label>
         </div>
         <div class="switch-and-label disabled">
+          <label for="ai-letter-toggle" class="toggle-label">
+            Computer Letter
+          </label>
           <div class="toggle-wrapper ai-letter-toggle disabled">
             <input
               type="checkbox"
@@ -75,9 +78,13 @@
             <span class="toggle-span">x</span>
             <span class="toggle-span">o</span>
           </div>
-          <label for="ai-letter-toggle" class="toggle-label">
-            Computer Letter
-          </label>
+        </div>
+        <div class="select-wrapper disabled">
+          <label for="difficulty-select">Difficulty</label>
+          <select id="difficulty-select" name="difficulty" disabled>
+            <option value="easy">Easy</option>
+            <option value="hard">Hard</option>
+          </select>
         </div>
         <div class="form-btns">
           <button type="button" id="cancel-settings" class="btn reset-btn">

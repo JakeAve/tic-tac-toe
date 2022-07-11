@@ -431,15 +431,18 @@ const playXTurn4 = (game) => {
   return playStrategic(game, "x");
 };
 
-export const getIndexFromAi = (game) => {
-  const length = game.filter(Boolean).length;
-  if (length === 0) return playXTurn1();
-  if (length === 1) return playOTurn1(game);
-  if (length === 2) return playXTurn2(game);
-  if (length === 3) return playOTurn2(game);
-  if (length === 4) return playXTurn3(game);
-  if (length === 5) return playStrategic(game, "o");
-  if (length === 6) return playXTurn4(game);
-  if (length === 7) return playStrategic(game, "o");
-  if (length === 8) return playStrategic(game, "x");
+export const getIndexFromAi = {
+  easy: (game) => getRandomAvailableBlock(game),
+  hard: (game) => {
+    const length = game.filter(Boolean).length;
+    if (length === 0) return playXTurn1();
+    if (length === 1) return playOTurn1(game);
+    if (length === 2) return playXTurn2(game);
+    if (length === 3) return playOTurn2(game);
+    if (length === 4) return playXTurn3(game);
+    if (length === 5) return playStrategic(game, "o");
+    if (length === 6) return playXTurn4(game);
+    if (length === 7) return playStrategic(game, "o");
+    if (length === 8) return playStrategic(game, "x");
+  },
 };

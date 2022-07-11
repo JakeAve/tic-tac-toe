@@ -3,16 +3,18 @@ import "./dialogPolyfill.js";
 
 let isArtificialOponent = false;
 let isArtificialX = false;
+let globalDifficultyLevel = "easy";
 let endLastGame = () => {}; // used to remove event listener on container
 
 const reset = () => {
   endLastGame();
-  const { endGame } = resetGame(
+  const { endGame } = resetGame({
     isArtificialOponent,
     isArtificialX,
     onWin,
-    onCatsGame
-  );
+    onCatsGame,
+    difficultyLevel: globalDifficultyLevel,
+  });
   endLastGame = endGame;
 };
 
@@ -48,25 +50,30 @@ const captureFormData = () => {
   const formData = new FormData(gameSettingsForm);
   let shouldUseArtificialOponent = false;
   let shouldArtificialBeX = false;
+  let difficultyLevel = "hard";
   for (const [key, value] of formData) {
     if (key === "artificial-oponent" && value === "on")
       shouldUseArtificialOponent = true;
     if (key === "artificial-oponent-letter" && value === "x")
       shouldArtificialBeX = true;
+    if (key === "difficulty") difficultyLevel = value;
   }
-  return { shouldUseArtificialOponent, shouldArtificialBeX };
+  return { shouldUseArtificialOponent, shouldArtificialBeX, difficultyLevel };
 };
 
 gameSettingsDialog.addEventListener("submit", () => {
-  const { shouldUseArtificialOponent, shouldArtificialBeX } = captureFormData();
+  const { shouldUseArtificialOponent, shouldArtificialBeX, difficultyLevel } =
+    captureFormData();
   isArtificialOponent = shouldUseArtificialOponent;
   isArtificialX = shouldArtificialBeX;
+  globalDifficultyLevel = difficultyLevel;
 
   reset();
 });
 
 const aiOnToggle = document.querySelector("#ai-on-toggle");
 const aiLetterToggle = document.querySelector("#ai-letter-toggle");
+const difficultySelect = document.querySelector("#difficulty-select");
 const toggleCheckboxes = [aiOnToggle, aiLetterToggle];
 
 toggleCheckboxes.forEach((cb) =>
@@ -78,12 +85,16 @@ toggleCheckboxes.forEach((cb) =>
     if (e.target.id === "ai-on-toggle" && e.target.checked) {
       aiLetterToggle.closest(".toggle-wrapper").classList.remove("disabled");
       aiLetterToggle.closest(".switch-and-label").classList.remove("disabled");
+      difficultySelect.closest(".select-wrapper").classList.remove("disabled");
       aiLetterToggle.disabled = false;
+      difficultySelect.disabled = false;
     }
     if (e.target.id === "ai-on-toggle" && !e.target.checked) {
       aiLetterToggle.closest(".toggle-wrapper").classList.add("disabled");
       aiLetterToggle.closest(".switch-and-label").classList.add("disabled");
+      difficultySelect.closest(".select-wrapper").classList.add("disabled");
       aiLetterToggle.disabled = true;
+      difficultySelect.disabled = true;
     }
   })
 );

@@ -97,18 +97,26 @@ button:focus-visible {
   0% {
     text-shadow: 0px 0px 20px var(--shadow-color),
       5px 5px 20px var(--shadow-color), -5px -5px 20px var(--shadow-color),
-      10px 10px 20px var(--shadow-color), -10px -10px 20px var(--shadow-color);
+      5px -5px 20px var(--shadow-color), 5px -5px 20px var(--shadow-color),
+      -5px 5px 20px var(--shadow-color), 10px 10px 20px var(--shadow-color),
+      -10px -10px 20px var(--shadow-color), 10px 10px 20px var(--shadow-color),
+      -10px 10px 20px var(--shadow-color), 10px -10px 20px var(--shadow-color);
   }
   50% {
-    text-shadow: 0px 0px 80px var(--shadow-color),
-      0px 0px 40px var(--shadow-color), 5px 5px 20px var(--shadow-color),
-      -5px -5px 20px var(--shadow-color), 10px 10px 20px var(--shadow-color),
+    text-shadow: 0px 0px 40px var(--shadow-color),
+      5px 5px 20px var(--shadow-color), -5px -5px 20px var(--shadow-color),
+      5px -5px 20px var(--shadow-color), 5px -5px 20px var(--shadow-color),
+      -5px 5px 20px var(--shadow-color), 10px 10px 20px var(--shadow-color),
+      -10px 10px 20px var(--shadow-color), 10px -10px 20px var(--shadow-color),
       -10px -10px 20px var(--shadow-color);
   }
   100% {
     text-shadow: 0px 0px 20px var(--shadow-color),
       5px 5px 20px var(--shadow-color), -5px -5px 20px var(--shadow-color),
-      10px 10px 20px var(--shadow-color), -10px -10px 20px var(--shadow-color);
+      5px -5px 20px var(--shadow-color), 5px -5px 20px var(--shadow-color),
+      -5px 5px 20px var(--shadow-color), 10px 10px 20px var(--shadow-color),
+      -10px -10px 20px var(--shadow-color), 10px 10px 20px var(--shadow-color),
+      -10px 10px 20px var(--shadow-color), 10px -10px 20px var(--shadow-color);
   }
 }
 
@@ -168,7 +176,8 @@ button:focus-visible {
   gap: 2rem;
 }
 
-.switch-and-label {
+.switch-and-label,
+.select-wrapper {
   display: grid;
   grid-template-columns: auto auto;
   justify-content: space-between;
@@ -194,12 +203,21 @@ button:focus-visible {
   border-color: var(--background-color);
 }
 
-.switch-and-label.disabled {
+.switch-and-label.disabled,
+.select-wrapper.disabled {
   visibility: hidden;
 }
 
-.switch-and-label:has(.disabled.ai-letter-toggle) {
+.switch-and-label:has(.disabled.ai-letter-toggle),
+.select-wrapper:has(select[disabled]) {
   visibility: hidden;
+}
+
+.select-wrapper select {
+  color: var(--color-1);
+  background-color: var(--color-bg);
+  font-size: 1rem;
+  padding: 0.2rem 0.5rem;
 }
 
 @keyframes color-shift-border {

@@ -31,7 +31,13 @@ const checkForWin = (arr) => {
   return { idxs, letter };
 };
 
-const startGame = (isArtificialOponent, isArtificialX, onWin, onCatsGame) => {
+const startGame = ({
+  isArtificialOponent,
+  isArtificialX,
+  onWin,
+  onCatsGame,
+  difficultyLevel,
+}) => {
   let currentLetter = "x";
   const game = ["", "", "", "", "", "", "", "", ""];
   const mapGameToBoard = () =>
@@ -79,7 +85,7 @@ const startGame = (isArtificialOponent, isArtificialX, onWin, onCatsGame) => {
 
   const artificialTurn = () => {
     container.removeEventListener("click", onClick);
-    const index = getIndexFromAi(game);
+    const index = getIndexFromAi[difficultyLevel](game);
     setTimeout(() => {
       playTurn(
         index,
@@ -94,16 +100,23 @@ const startGame = (isArtificialOponent, isArtificialX, onWin, onCatsGame) => {
   return { endGame };
 };
 
-export const resetGame = (
+export const resetGame = ({
   isArtificialOponent,
   isArtificialX,
   onWin,
-  onCatsGame
-) => {
+  onCatsGame,
+  difficultyLevel,
+}) => {
   buttons.forEach((b) => {
     b.innerHTML = "";
     b.removeAttribute("letter");
     b.classList.remove("win");
   });
-  return startGame(isArtificialOponent, isArtificialX, onWin, onCatsGame);
+  return startGame({
+    isArtificialOponent,
+    isArtificialX,
+    onWin,
+    onCatsGame,
+    difficultyLevel,
+  });
 };
