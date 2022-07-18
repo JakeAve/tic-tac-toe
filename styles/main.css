@@ -42,6 +42,21 @@ button:focus-visible {
   outline: none;
 }
 
+button,
+select,
+.toggle-wrapper {
+  --shadow-color: ;
+}
+
+select:focus,
+select:focus-visible,
+.toggle-wrapper:focus-within,
+button:focus-visible {
+  outline: 1px solid var(--color-1);
+  --shadow-color: var(--color-1);
+  animation: shadow-pulse-box 5s alternate infinite ease-in-out;
+}
+
 .tic-tac-toe-container {
   display: grid;
   grid-template-columns: repeat(3, calc(100% / 3));
@@ -89,6 +104,21 @@ button:focus-visible {
   }
   100% {
     text-shadow: 0px 0px 20px var(--shadow-color),
+      0px 0px 5px var(--shadow-color);
+  }
+}
+
+@keyframes shadow-pulse-box {
+  0% {
+    box-shadow: 0px 0px 10px var(--shadow-color),
+      0px 0px 5px var(--shadow-color);
+  }
+  50% {
+    box-shadow: 0px 0px 20px var(--shadow-color),
+      0px 0px 5px var(--shadow-color);
+  }
+  100% {
+    box-shadow: 0px 0px 10px var(--shadow-color),
       0px 0px 5px var(--shadow-color);
   }
 }
@@ -203,14 +233,22 @@ button:focus-visible {
   border-color: var(--background-color);
 }
 
+.switch-and-label,
+.select-wrapper {
+  max-height: 3rem;
+  transition: 0.2s ease-in-out;
+}
+
 .switch-and-label.disabled,
 .select-wrapper.disabled {
   visibility: hidden;
+  max-height: 0;
 }
 
 .switch-and-label:has(.disabled.ai-letter-toggle),
 .select-wrapper:has(select[disabled]) {
   visibility: hidden;
+  max-height: 0;
 }
 
 .select-wrapper select {
@@ -230,6 +268,7 @@ button:focus-visible {
     box-shadow: 0 0 calc(var(--toggle-width) / 10) var(--accent-2);
   }
 }
+
 @keyframes color-shift-background {
   0% {
     background-color: var(--bg-1);
