@@ -2,7 +2,7 @@ const fs = require("fs");
 const fsP = require("fs").promises;
 const path = require("path");
 const SRC_DIR = "src";
-const OUTPUT_DIR = "dist";
+const OUTPUT_DIR = "docs";
 
 const minifyHTML = require("html-minifier").minify;
 const htmlOptions = {
