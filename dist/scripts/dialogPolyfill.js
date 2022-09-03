@@ -1,0 +1,1 @@
+document.querySelectorAll("dialog").forEach(t=>{t.showModal||(t.setAttribute("polyfill","true"),t.showModal=()=>(t.setAttribute("open",""),t),t.close=()=>(t.removeAttribute("open"),t),t.querySelector('form[method="dialog"]')?.addEventListener("submit",e=>{e.preventDefault(),t.close()}))});

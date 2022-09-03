@@ -1,11 +1,34 @@
 const fs = require("fs");
 const fsP = require("fs").promises;
 const path = require("path");
-const SRC = "src";
-const DIST = "dist";
+const SRC_DIR = "src";
+const OUTPUT_DIR = "dist";
 
 const minifyHTML = require("html-minifier").minify;
+const htmlOptions = {
+  collapseWhitespace: true,
+  removeComments: true,
+  removeRedundantAttributes: true,
+  collapseBooleanAttributes: true,
+};
+
 const minifyJS = require("uglify-js").minify;
+const jsOptions = {
+  parse: {
+    module: true,
+  },
+  compress: {
+    toplevel: true,
+  },
+  mangle: {
+    toplevel: true,
+  },
+};
+
+const minifyCSS = (cssString, options) =>
+  new CleanCSS(options).minify(cssString);
+const cssOptions = { inline: ["none"] };
+const CleanCSS = require("clean-css");
 
 const getAllFiles = (dirPath, arrayOfFiles = []) => {
   const files = fs.readdirSync(dirPath);
@@ -24,36 +47,40 @@ const minifyContents = async (filePath) => {
   let minfiedContents;
   switch (path.extname(filePath)) {
     case ".html":
-      minfiedContents = minifyHTML(contents);
+      minfiedContents = minifyHTML(contents, htmlOptions);
       break;
     case ".js":
-      minfiedContents = minifyJS(contents);
+      const jsResult = minifyJS(contents, jsOptions);
+      minfiedContents = jsResult.code;
+      break;
+    case ".css":
+      const cssResult = await minifyCSS(contents, cssOptions);
+      minfiedContents = cssResult.styles;
+      break;
     default:
       minfiedContents = contents;
   }
-  console.log({ extanem: path.extname(filePath), minfiedContents });
   return minfiedContents;
 };
 
-const minifyFile = async (filePath) => {
+const minifyFile = async (filePath, outputDir) => {
   const miniContents = await minifyContents(filePath);
   const sep = filePath.split(path.sep).slice(1);
-  const newPath = path.join(DIST, ...sep);
-  const newDir = path.join(DIST, ...sep.slice(0, sep.length - 1));
+  const newPath = path.join(outputDir, ...sep);
+  const newDir = path.join(outputDir, ...sep.slice(0, sep.length - 1));
   if (!fs.existsSync(newDir)) fs.mkdirSync(newDir, { recursive: true });
   return fsP.writeFile(newPath, miniContents);
 };
 
-const minifyFiles = (filePaths) => {
-  Promise.all(filePaths.map((filePath) => minifyFile(filePath)));
+const minifyFiles = (filePaths, outputDir) => {
+  Promise.all(filePaths.map((filePath) => minifyFile(filePath, outputDir)));
 };
 
-if (fs.existsSync(DIST)) fs.rmSync(DIST, { recursive: true });
+const minifyDir = (inputDir, outputDir) => {
+  if (fs.existsSync(outputDir)) fs.rmSync(outputDir, { recursive: true });
+  fs.mkdirSync(outputDir);
+  const files = getAllFiles(inputDir);
+  minifyFiles(files, outputDir);
+};
 
-fs.mkdirSync(DIST);
-
-const files = getAllFiles(SRC);
-
-minifyFiles(files);
-
-// fs.writeFileSync("/foo/bar/buzz.txt", "hi");
+minifyDir(SRC_DIR, OUTPUT_DIR);
