@@ -10,8 +10,11 @@
     "type": "git",
     "url": "git+https://github.com/JakeAve/tic-tac-toe.git"
   },
-  "keywords": [],
-  "author": "",
+  "keywords": [
+    "game",
+    "javascript"
+  ],
+  "author": "Jacob Avery",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/JakeAve/tic-tac-toe/issues"
