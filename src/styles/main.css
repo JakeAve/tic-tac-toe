@@ -108,6 +108,37 @@ button:focus-visible {
   }
 }
 
+@keyframes shadow-pulse-color {
+  0% {
+    text-shadow: 0px 0px 20px var(--accent-1),
+      0px 0px 5px var(--accent-1);
+  }
+  16% {
+    text-shadow: 0px 0px 40px var(--accent-1),
+      0px 0px 5px var(--accent-1);
+  }
+  32% {
+    text-shadow: 0px 0px 20px var(--accent-1),
+      0px 0px 5px var(--accent-1);
+  }
+  48% {
+    text-shadow: 0px 0px 20px var(--accent-2),
+      0px 0px 5px var(--accent-2);
+  }
+  64% {
+    text-shadow: 0px 0px 40px var(--accent-2),
+      0px 0px 5px var(--accent-2);
+  }
+  80% {
+    text-shadow: 0px 0px 20px var(--accent-2),
+      0px 0px 5px var(--accent-2);
+  }
+  100% {
+    text-shadow: 0px 0px 20px var(--accent-1),
+      0px 0px 5px var(--accent-1);
+  }
+}
+
 @keyframes shadow-pulse-box {
   0% {
     box-shadow: 0px 0px 10px var(--shadow-color),
@@ -206,8 +237,7 @@ button:focus-visible {
   gap: 2rem;
 }
 
-.switch-and-label,
-.select-wrapper {
+.switch-and-label {
   display: grid;
   grid-template-columns: auto auto;
   justify-content: space-between;
@@ -233,29 +263,59 @@ button:focus-visible {
   border-color: var(--background-color);
 }
 
-.switch-and-label,
-.select-wrapper {
+.switch-and-label {
   max-height: 3rem;
   transition: 0.2s ease-in-out;
 }
 
 .switch-and-label.disabled,
-.select-wrapper.disabled {
+.radio-btn-group.disabled {
   visibility: hidden;
   max-height: 0;
 }
 
-.switch-and-label:has(.disabled.ai-letter-toggle),
-.select-wrapper:has(select[disabled]) {
+.switch-and-label:has(.disabled.ai-letter-toggle) {
   visibility: hidden;
   max-height: 0;
 }
 
-.select-wrapper select {
-  color: var(--color-1);
-  background-color: var(--color-bg);
+.radio-btn-group {
   font-size: 1rem;
-  padding: 0.2rem 0.5rem;
+}
+
+.radio-btn-group legend {
+  text-align: center;
+}
+
+.radio-options {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  justify-content: center;
+  justify-items: center;
+}
+
+.radio-input {
+  position: relative;
+}
+
+.radio-input label {
+  opacity: .7;
+}
+
+.radio-input input:checked + label {
+  opacity: 1;
+  font-weight: bold;
+  animation: shadow-pulse-color 5s alternate infinite ease-in-out, color-shift-background 5s alternate ease-in-out infinite;
+}
+
+.radio-input input {
+  opacity: 0;
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  display: inline-block;
 }
 
 @keyframes color-shift-border {

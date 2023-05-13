@@ -30,7 +30,6 @@ const openSettings = () => {
     "click",
     () => {
       aiOnToggle.checked = data.shouldUseArtificialOponent;
-      aiLetterToggle.checked = data.shouldArtificialBeX;
       [aiOnToggle, aiLetterToggle].forEach((t) =>
         t.dispatchEvent(new Event("change"))
       );
@@ -54,9 +53,8 @@ const captureFormData = () => {
   for (const [key, value] of formData) {
     if (key === "artificial-oponent" && value === "on")
       shouldUseArtificialOponent = true;
-    if (key === "artificial-oponent-letter" && value === "x")
-      shouldArtificialBeX = true;
-    if (key === "difficulty") difficultyLevel = value;
+    if (key === "player-letter" && value === "o") shouldArtificialBeX = true;
+    if (key === "difficulty-level") difficultyLevel = value;
   }
   return { shouldUseArtificialOponent, shouldArtificialBeX, difficultyLevel };
 };
@@ -72,32 +70,30 @@ gameSettingsDialog.addEventListener("submit", () => {
 });
 
 const aiOnToggle = document.querySelector("#ai-on-toggle");
-const aiLetterToggle = document.querySelector("#ai-letter-toggle");
-const difficultySelect = document.querySelector("#difficulty-select");
-const toggleCheckboxes = [aiOnToggle, aiLetterToggle];
 
-toggleCheckboxes.forEach((cb) =>
-  cb.addEventListener("change", (e) => {
-    if (e.target.checked)
-      e.target.closest(".toggle-wrapper").classList.add("checked");
-    else e.target.closest(".toggle-wrapper").classList.remove("checked");
+aiOnToggle.addEventListener("change", (e) => {
+  if (e.target.checked)
+    e.target.closest(".toggle-wrapper").classList.add("checked");
+  else e.target.closest(".toggle-wrapper").classList.remove("checked");
 
-    if (e.target.id === "ai-on-toggle" && e.target.checked) {
-      aiLetterToggle.closest(".toggle-wrapper").classList.remove("disabled");
-      aiLetterToggle.closest(".switch-and-label").classList.remove("disabled");
-      difficultySelect.closest(".select-wrapper").classList.remove("disabled");
-      aiLetterToggle.disabled = false;
-      difficultySelect.disabled = false;
-    }
-    if (e.target.id === "ai-on-toggle" && !e.target.checked) {
-      aiLetterToggle.closest(".toggle-wrapper").classList.add("disabled");
-      aiLetterToggle.closest(".switch-and-label").classList.add("disabled");
-      difficultySelect.closest(".select-wrapper").classList.add("disabled");
-      aiLetterToggle.disabled = true;
-      difficultySelect.disabled = true;
-    }
-  })
-);
+  if (e.target.id === "ai-on-toggle" && e.target.checked) {
+    gameSettingsForm.querySelectorAll(".radio-btn-group").forEach((div) => {
+      div.classList.remove("disabled");
+    });
+    gameSettingsForm
+      .querySelectorAll('input[type="radio"]')
+      .forEach((input) => (input.disabled = false));
+  }
+
+  if (e.target.id === "ai-on-toggle" && !e.target.checked) {
+    gameSettingsForm.querySelectorAll(".radio-btn-group").forEach((div) => {
+      div.classList.add("disabled");
+    });
+    gameSettingsForm
+      .querySelectorAll('input[type="radio"]')
+      .forEach((input) => (input.disabled = true));
+  }
+});
 
 const messageDialog = document.querySelector("#message-dialog");
 const closeMessageDialogBtn = document.querySelector("#close-message-dialog");
