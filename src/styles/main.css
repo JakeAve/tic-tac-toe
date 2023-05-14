@@ -34,7 +34,7 @@ main {
   gap: 2rem;
 }
 
-button {
+button, input[type=radio] {
   cursor: pointer;
 }
 
@@ -290,20 +290,31 @@ button:focus-visible {
 .radio-options {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  justify-content: center;
-  justify-items: center;
+  grid-template-rows: 2rem;
+  justify-items: stretch;
 }
+
 
 .radio-input {
   position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.radio-input:hover, .radio-input:focus {
+  background-color: var(--color-bg-hover);
+}
+
+.radio-input:has(input:checked) {
+  background-color: var(--color-bg-hover);
 }
 
 .radio-input label {
-  opacity: .7;
+  font-weight: lighter;
 }
 
 .radio-input input:checked + label {
-  opacity: 1;
   font-weight: bold;
   animation: shadow-pulse-color 5s alternate infinite ease-in-out, color-shift-background 5s alternate ease-in-out infinite;
 }
@@ -315,7 +326,6 @@ button:focus-visible {
   left: 0;
   height: 100%;
   width: 100%;
-  display: inline-block;
 }
 
 @keyframes color-shift-border {
