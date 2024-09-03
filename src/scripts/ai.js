@@ -163,7 +163,7 @@ const playXTurn2 = (game) => {
 
   if (areArrsEqual(game, ["x", "", "", "", "", "o", "", "", ""])) return 2;
 
-  if (areArrsEqual(game, ["", "", "x", "o", "", "", "", "", ""])) return 8;
+  if (areArrsEqual(game, ["", "", "x", "o", "", "", "", "", ""])) return 4;
 
   if (areArrsEqual(game, ["", "", "x", "", "", "", "", "o", ""])) return 0;
 
@@ -217,7 +217,7 @@ const playOTurn2 = (game) => {
 
   if (areArrsEqual(game, ["", "x", "", "", "o", "", "x", "", ""])) return 3;
 
-  if (areArrsEqual(game, ["", "", "", "", "o", "x", "x", "", ""])) return 3;
+  if (areArrsEqual(game, ["", "", "", "", "o", "x", "x", "", ""])) return 8;
 
   if (areArrsEqual(game, ["", "x", "", "", "o", "", "", "", "x"])) return 5;
 
