@@ -3,7 +3,7 @@
 
 @font-face {
   font-family: "Nunito";
-  src: url("./assets/fonts/Nunito-Medium.ttf") format("truetype");
+  src: url("/tic-tac-toe/assets/fonts/Nunito-Medium.ttf") format("truetype");
   display: swap;
   font-style: normal;
 }

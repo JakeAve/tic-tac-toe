@@ -1,0 +1,1 @@
+- [ ] Fix where the main.css and the manifest need the github pages url formatted right. Having to manually prefix them with /tic-tac-toe/. Perhaps switching away from github pages.
