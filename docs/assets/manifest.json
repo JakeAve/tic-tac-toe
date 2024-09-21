@@ -3,10 +3,11 @@
   "short_name": "Tic-Tac-Toe",
   "description": "Play tic-tac-toe",
   "start_url": "/tic-tac-toe/",
-  "id": "/tic-tac-toe/",
+  "scope": "/tic-tac-toe/",
+  "id": "/tic-tac-toe/?v2",
   "display": "standalone",
   "background_color": "#1e1e1e",
-  "theme_color": "#e9e9e9",
+  "theme_color": "#1e1e1e",
   "icons": [
     {
       "src": "/tic-tac-toe/assets/icons/favicon-16x16.png",
