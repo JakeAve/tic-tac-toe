@@ -1,11 +1,18 @@
 @import url("./toggle.css");
 @import url("./dialog-polyfill.css");
 
+@font-face {
+  font-family: "Nunito";
+  src: url("/assets/fonts/Nunito-Medium.ttf") format("truetype");
+  display: swap;
+  font-style: normal;
+}
+
 :root {
   --color-bg: #1e1e1e;
   --color-bg-hover: #2a2a2a;
   --color-1: #e9e9e9;
-  --boder-1: 2px solid var(--color-1);
+  --border-1: 2px solid var(--color-1);
   --accent-1: #fe0000;
   --accent-1-bg: #271d1d;
   --accent-2: #00a6ff;
@@ -34,7 +41,8 @@ main {
   gap: 2rem;
 }
 
-button, input[type=radio] {
+button,
+input[type="radio"] {
   cursor: pointer;
 }
 
@@ -110,32 +118,25 @@ button:focus-visible {
 
 @keyframes shadow-pulse-color {
   0% {
-    text-shadow: 0px 0px 20px var(--accent-1),
-      0px 0px 5px var(--accent-1);
+    text-shadow: 0px 0px 20px var(--accent-1), 0px 0px 5px var(--accent-1);
   }
   16% {
-    text-shadow: 0px 0px 40px var(--accent-1),
-      0px 0px 5px var(--accent-1);
+    text-shadow: 0px 0px 40px var(--accent-1), 0px 0px 5px var(--accent-1);
   }
   32% {
-    text-shadow: 0px 0px 20px var(--accent-1),
-      0px 0px 5px var(--accent-1);
+    text-shadow: 0px 0px 20px var(--accent-1), 0px 0px 5px var(--accent-1);
   }
   48% {
-    text-shadow: 0px 0px 20px var(--accent-2),
-      0px 0px 5px var(--accent-2);
+    text-shadow: 0px 0px 20px var(--accent-2), 0px 0px 5px var(--accent-2);
   }
   64% {
-    text-shadow: 0px 0px 40px var(--accent-2),
-      0px 0px 5px var(--accent-2);
+    text-shadow: 0px 0px 40px var(--accent-2), 0px 0px 5px var(--accent-2);
   }
   80% {
-    text-shadow: 0px 0px 20px var(--accent-2),
-      0px 0px 5px var(--accent-2);
+    text-shadow: 0px 0px 20px var(--accent-2), 0px 0px 5px var(--accent-2);
   }
   100% {
-    text-shadow: 0px 0px 20px var(--accent-1),
-      0px 0px 5px var(--accent-1);
+    text-shadow: 0px 0px 20px var(--accent-1), 0px 0px 5px var(--accent-1);
   }
 }
 
@@ -195,17 +196,17 @@ button:focus-visible {
 
 .tic-tac-toe-btn:nth-child(2),
 .tic-tac-toe-btn:nth-child(8) {
-  border-left: var(--boder-1);
-  border-right: var(--boder-1);
+  border-left: var(--border-1);
+  border-right: var(--border-1);
 }
 .tic-tac-toe-btn:nth-child(4),
 .tic-tac-toe-btn:nth-child(6) {
-  border-top: var(--boder-1);
-  border-bottom: var(--boder-1);
+  border-top: var(--border-1);
+  border-bottom: var(--border-1);
 }
 
 .tic-tac-toe-btn:nth-child(5) {
-  border: var(--boder-1);
+  border: var(--border-1);
 }
 
 .tic-tac-toe-btn.win {
@@ -294,7 +295,6 @@ button:focus-visible {
   justify-items: stretch;
 }
 
-
 .radio-input {
   position: relative;
   display: flex;
@@ -302,7 +302,8 @@ button:focus-visible {
   align-items: center;
 }
 
-.radio-input:hover, .radio-input:focus {
+.radio-input:hover,
+.radio-input:focus {
   background-color: var(--color-bg-hover);
 }
 
@@ -316,7 +317,8 @@ button:focus-visible {
 
 .radio-input input:checked + label {
   font-weight: bold;
-  animation: shadow-pulse-color 5s alternate infinite ease-in-out, color-shift-background 5s alternate ease-in-out infinite;
+  animation: shadow-pulse-color 5s alternate infinite ease-in-out,
+    color-shift-background 5s alternate ease-in-out infinite;
 }
 
 .radio-input input {

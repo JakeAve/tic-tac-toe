@@ -4,7 +4,8 @@
   "description": "",
   "main": "dist/index.js",
   "scripts": {
-    "build": "node build"
+    "build": "node build",
+    "dev": "nodemon --watch src --ext js,html,css devServer.js"
   },
   "repository": {
     "type": "git",
@@ -22,7 +23,9 @@
   "homepage": "https://github.com/JakeAve/tic-tac-toe#readme",
   "devDependencies": {
     "clean-css": "^5.3.1",
+    "express": "^4.21.0",
     "html-minifier": "^4.0.0",
+    "nodemon": "^3.1.7",
     "uglify-js": "^3.17.0"
   }
 }

@@ -72,8 +72,25 @@ const minifyFile = async (filePath, outputDir) => {
   return fsP.writeFile(newPath, miniContents);
 };
 
+const copyFile = async (filePath, outputDir) => {
+  const contents = await fsP.readFile(filePath);
+  const sep = filePath.split(path.sep).slice(1);
+  const newPath = path.join(outputDir, ...sep);
+  const newDir = path.join(outputDir, ...sep.slice(0, sep.length - 1));
+  if (!fs.existsSync(newDir)) fs.mkdirSync(newDir, { recursive: true });
+  return fsP.writeFile(newPath, contents);
+};
+
 const minifyFiles = (filePaths, outputDir) => {
-  Promise.all(filePaths.map((filePath) => minifyFile(filePath, outputDir)));
+  Promise.all(
+    filePaths.map((filePath) => {
+      if (['.html', '.css', '.js'].includes(path.extname(filePath))) {
+        return minifyFile(filePath, outputDir);
+      } else {
+        return copyFile(filePath, outputDir);
+      }
+    })
+  );
 };
 
 const minifyDir = (inputDir, outputDir) => {
