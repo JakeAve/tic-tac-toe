@@ -2,7 +2,7 @@ const PRECACHE = "precache-v1";
 const RUNTIME = "runtime";
 
 const PRECACHE_URLS = [
-  "/tic-tac-toe",
+  "/tic-tac-toe/",
   "/tic-tac-toe/index.html",
   "/tic-tac-toe/styles/dialog-polyfill.css",
   "/tic-tac-toe/styles/main.css",

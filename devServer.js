@@ -12,7 +12,7 @@ const options = {
   cert: fs.readFileSync("./cert/local_host.crt"),
 };
 
-app.use(express.static(path.join(__dirname, "src")));
+app.use("/tic-tac-toe", express.static(path.join(__dirname, "src")));
 
 https.createServer(options, app).listen(PORT, () => {
   console.log(`HTTPS Server is running on https://localhost:${PORT}`);
