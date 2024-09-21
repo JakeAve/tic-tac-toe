@@ -15,5 +15,5 @@ const options = {
 app.use("/tic-tac-toe", express.static(path.join(__dirname, "src")));
 
 https.createServer(options, app).listen(PORT, () => {
-  console.log(`HTTPS Server is running on https://localhost:${PORT}`);
+  console.log(`HTTPS Server is running on https://localhost/tic-tac-toe/`);
 });
