@@ -2,16 +2,16 @@ const PRECACHE = "precache-v1";
 const RUNTIME = "runtime";
 
 const PRECACHE_URLS = [
-  "/",
-  "/index.html",
-  "/styles/dialog-polyfill.css",
-  "/styles/main.css",
-  "/styles/toggle.css",
-  "/scripts/ai.js",
-  "/scripts/dialogPolyfill.js",
-  "/scripts/game.js",
-  "/scripts/main.js",
-  "/assets/fonts/Nunito-Medium.ttf",
+  "/tic-tac-toe",
+  "/tic-tac-toe/index.html",
+  "/tic-tac-toe/styles/dialog-polyfill.css",
+  "/tic-tac-toe/styles/main.css",
+  "/tic-tac-toe/styles/toggle.css",
+  "/tic-tac-toe/scripts/ai.js",
+  "/tic-tac-toe/scripts/dialogPolyfill.js",
+  "/tic-tac-toe/scripts/game.js",
+  "/tic-tac-toe/scripts/main.js",
+  "/tic-tac-toe/assets/fonts/Nunito-Medium.ttf",
 ];
 
 self.addEventListener("install", (event) => {
